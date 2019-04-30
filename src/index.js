@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+// eslint-disable-next-line standard/object-curly-even-spacing
+import {BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
 import './styles/base.scss'
 import Auth from './containers/Auth/Auth'
@@ -11,10 +12,13 @@ const App = () => {
   return (
     <div>
       <Router>
-        <Route path = '/' exact component = {Auth}/>
-        <Route path = '/auth' exact component = {Auth}/>
-        <Route path = '/auth/trainer' component = {AuthTrianer}/>
-        <Route path = '/auth/student' component = {AuthStudent}/>
+        <Switch>
+          <Route path = '/' exact component = {Auth}/>
+          <Route path = '/auth' exact component = {Auth}/>
+          <Route path = '/auth/trainer' component = {AuthTrianer}/>
+          <Route path = '/auth/student' component = {AuthStudent}/>
+          <Redirect to = '/'/>
+        </Switch>
       </Router>
     </div>
   )
