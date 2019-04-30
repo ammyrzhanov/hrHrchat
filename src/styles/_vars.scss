@@ -1,0 +1,13 @@
+$backgroundColor: #E5E5E5;
+$colorText: #1D1D1D;
+
+$colorPrimaryBlue: #1390E5;
+$colorSecondaryBlue: #107FC9;
+
+@mixin flex-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
