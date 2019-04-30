@@ -1,9 +1,10 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
 import './auth.scss'
 import { emblem } from '../../images'
 import { Button } from '../../components'
-const Auth = () => {
+const Auth = ({history}) => {
   return (
     <div className = "auth__blok">
       <div className = "auth">
@@ -13,11 +14,11 @@ const Auth = () => {
         <div className="auth__title">
           <span>Выберите тип пользователя</span>
         </div>
-        <Button title = 'Тренер'/>
-        <Button title = 'Ученик'/>
+        <Button title = 'Тренер' onClick = {() => history.push('/auth/trainer')}/>
+        <Button title = 'Ученик' onClick = {() => history.push('/auth/student')}/>
       </div>
     </div>
 
   )
 }
-export default Auth
+export default withRouter(Auth)
