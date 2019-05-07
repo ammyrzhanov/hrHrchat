@@ -2,12 +2,13 @@ import React from 'react'
 
 import './button.scss'
 
-const Button = ({title, onClick}) => {
+const Button = ({title, className}) => {
   return (
-    <div>
-      <input type='submit' value={title} className= {title === 'Тренер' ? 'btn-primary' : 'btn-secondary'}
-        onClick= {onClick}/>
-    </div>
+    <button
+      type='submit'
+      className={className}>
+      {title}
+    </button>
   )
 }
 

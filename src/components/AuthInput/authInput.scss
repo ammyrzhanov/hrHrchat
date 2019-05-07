@@ -1,12 +1,15 @@
-.auth__input {
+.auth{
+  &__input {
     display: flex;
     width: 240px;
     height: 45px;
     border: 1px solid #B2B2B2;
     box-sizing: border-box;
-}
-.auth__input__filled{
-    border: 1px solid #00B863;
+
+    &--filled {
+      border: 1px solid #00B863;
+    }
+  }
 }
 
 .img-eye {

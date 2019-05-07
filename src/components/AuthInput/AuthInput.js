@@ -1,44 +1,42 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import classNames from 'classnames'
 
-import { trueeye, falseeye } from '../../images'
+import trueeye from '../../images/trueeye.svg'
+import falseeye from '../../images/falseeye.svg'
+
 import './authInput.scss'
 
-export default class AuthInput extends Component {
-  state = {
-    isEye: true,
-    type: this.props.type,
-    isEmpty: ''
+const AuthInput = ({ type = 'text', placeholder }) => {
+  const [isEye, setIsEye] = useState(true)
+  const [typeState, setTypeState] = useState(type)
+  const [isEmpty, setIsEmpty] = useState('')
+
+  const handleClick = () => {
+    setIsEye(!isEye)
+    setTypeState(typeState === 'text' ? 'password' : 'text')
   }
-  handleClick = () => {
-    this.setState({
-      isEye: !this.state.isEye,
-      type: this.state.type === 'text' ? 'password' : 'text'
-    })
-  }
-  handleChange = ({target}) => {
-    this.setState({
-      isEmpty: target.value
-    })
-  }
-  render() {
-    const { placeholder } = this.props
-    const { type } = this.state
-    const authInputClasses = classNames({
-      auth__input: true,
-      auth__input__filled: this.state.isEmpty
-    })
-    return (
-      <div className = {authInputClasses}>
-        <input type = {type} placeholder = {placeholder} onChange = {this.handleChange}>
-        </input>
-        {
-          placeholder === 'Password' && <img className = 'img-eye'
-            src = {this.state.isEye ? falseeye : trueeye}
-            alt = ''
-            onClick = {this.handleClick}/>
-        }
-      </div>
-    )
-  }
+
+  const authInputClasses = classNames({
+    'auth__input': true,
+    'auth__input--filled': isEmpty
+  })
+
+  return (
+    <div className={authInputClasses}>
+      <input
+        type={typeState}
+        placeholder={placeholder}
+        onChange={({target}) => setIsEmpty(target.value)}
+      />
+      {placeholder === 'Password' &&
+        <img
+          className='img-eye'
+          src={isEye ? falseeye : trueeye}
+          alt='eye'
+          onClick={handleClick}
+        />
+      }
+    </div>
+  )
 }
+export default AuthInput
