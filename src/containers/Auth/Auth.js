@@ -1,9 +1,10 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
 import './auth.scss'
 import emblem from '../../images/emblem.svg'
 import { Button } from '../../components'
-const Auth = () => {
+const Auth = ({history}) => {
   return (
     <div className='auth__blok'>
       <div className='auth user-type'>
@@ -17,15 +18,17 @@ const Auth = () => {
 
         <Button
           title='Тренер'
-          className = 'btn-primary'
+          className='btn-primary'
+          onClick={() => history.push('auth/trainer')}
         />
 
         <Button
           title='Ученик'
-          className = 'btn-secondary'
+          className='btn-secondary'
+          onClick={() => history.push('auth/student')}
         />
       </div>
     </div>
   )
 }
-export default Auth
+export default withRouter(Auth)

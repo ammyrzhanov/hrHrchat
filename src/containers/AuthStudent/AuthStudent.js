@@ -1,19 +1,24 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
 import './authStudent.scss'
 import { Button, AuthInput } from '../../components'
 import emblem from '../../images/emblem.svg'
 import arrowleft from '../../images/arrowleft.svg'
 
-const AuthStudent = () => {
+const AuthStudent = ({history}) => {
   return (
     <div className='auth__blok'>
       <div className='auth'>
         <div className='auth__goback' >
-          <img src={arrowleft} alt='arrowleft'/>
+          <img
+            src={arrowleft}
+            alt='arrowleft'
+            onClick={() => history.push('auth')}
+          />
         </div>
 
-        <div className = 'auth__image'>
+        <div className='auth__image'>
           <img src={emblem} alt='emblem'/>
         </div>
 
@@ -42,7 +47,7 @@ const AuthStudent = () => {
 
           <Button
             title='Войти'
-            className = 'btn-primary'
+            className='btn-primary'
           />
         </form>
       </div>
@@ -50,4 +55,4 @@ const AuthStudent = () => {
 
   )
 }
-export default AuthStudent
+export default withRouter(AuthStudent)
