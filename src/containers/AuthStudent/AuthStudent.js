@@ -1,12 +1,15 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 
+import authStudent from '../../actions/authStudent'
 import './authStudent.scss'
 import { Button, AuthInput } from '../../components'
 import emblem from '../../images/emblem.svg'
 import arrowleft from '../../images/arrowleft.svg'
 
-const AuthStudent = ({history}) => {
+const AuthStudent = (props) => {
+  console.log(props)
   return (
     <div className='auth__blok'>
       <div className='auth'>
@@ -14,7 +17,7 @@ const AuthStudent = ({history}) => {
           <img
             src={arrowleft}
             alt='arrowleft'
-            onClick={() => history.push('auth')}
+            onClick={() => props.history.push('auth')}
           />
         </div>
 
@@ -26,7 +29,7 @@ const AuthStudent = ({history}) => {
           <span>Войти в чат</span>
         </div>
 
-        <form className='auth__student'>
+        <form className='auth__student' onSubmit={(e) => e.preventDefault()}>
           <div className='pasword-title'>
             Имя Фамилия*
           </div>
@@ -48,6 +51,7 @@ const AuthStudent = ({history}) => {
           <Button
             title='Войти'
             className='btn-primary'
+            onClick = {() => props.authStudent('lol', '231456')}
           />
         </form>
       </div>
@@ -55,4 +59,12 @@ const AuthStudent = ({history}) => {
 
   )
 }
-export default withRouter(AuthStudent)
+const mapStateToProps = (state) => {
+  return {
+    state
+  }
+}
+
+const mapDispatchToProps = { authStudent }
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AuthStudent))
