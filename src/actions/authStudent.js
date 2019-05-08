@@ -1,29 +1,29 @@
 import Axios from 'axios'
 
-import { STUDETN_ERROR, STUDETN_SUCCESS, server } from './consts'
+import { STUDENT_ERROR, STUDENT_SUCCESS, server } from './consts'
 
 const authStudentSuccess = (payload) => {
   return {
-    type: STUDETN_SUCCESS,
+    type: STUDENT_SUCCESS,
     payload
   }
 }
 
 const authStudentError = (payload) => {
   return {
-    type: STUDETN_ERROR,
+    type: STUDENT_ERROR,
     payload
   }
 }
 
 const authStudent = (name, RoomId) => {
   return (dispatch) => {
-    return Axios.get(`${server}/api/planets/1531/`, {
+    return Axios.get(`${server}/api/planets/1231321/`, {
       name,
       RoomId
     }).then(res => {
-      console.log(res)
       dispatch(authStudentSuccess(res))
+      localStorage.setItem('token', res.data.token)
     }).catch(err => dispatch(authStudentError(err)))
   }
 }

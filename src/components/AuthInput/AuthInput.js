@@ -6,19 +6,29 @@ import falseeye from '../../images/falseeye.svg'
 
 import './authInput.scss'
 
-const AuthInput = ({ type = 'text', placeholder }) => {
+const AuthInput = ({ type = 'text', placeholder, onChange, isError = false }) => {
   const [isEye, setIsEye] = useState(true)
   const [typeState, setTypeState] = useState(type)
-  const [isEmpty, setIsEmpty] = useState('')
+  const [isFilled, setIsFilled] = useState(false)
+  const [inputIsError, setInputIsError] = useState(isError)
 
   const handleClick = () => {
     setIsEye(!isEye)
     setTypeState(typeState === 'text' ? 'password' : 'text')
   }
 
+  const handleChange = ({target}) => {
+    setIsFilled(!!target.value)
+    if (!isFilled) {
+      setInputIsError(false)
+    }
+    onChange(target)
+  }
+
   const authInputClasses = classNames({
     'auth__input': true,
-    'auth__input--filled': isEmpty
+    'auth__input--error': inputIsError,
+    'auth__input--filled': isFilled && !inputIsError
   })
 
   return (
@@ -26,7 +36,7 @@ const AuthInput = ({ type = 'text', placeholder }) => {
       <input
         type={typeState}
         placeholder={placeholder}
-        onChange={({target}) => setIsEmpty(target.value)}
+        onChange={handleChange}
       />
       {placeholder === 'Password' &&
         <img

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -8,13 +8,21 @@ import { Button, AuthInput } from '../../components'
 import emblem from '../../images/emblem.svg'
 import arrowleft from '../../images/arrowleft.svg'
 
-const AuthStudent = (props) => {
-  console.log(props)
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    props.authStudent('lol', '231456')
+const AuthStudent = ({ history, state, authStudent }) => {
+  const [name, setName] = useState('')
+  const [roomId, setRoomId] = useState('')
+
+  const handleChangeName = (target) => {
+    setName(target.value)
+  }
+  const handleChangeRoomId = (target) => {
+    setRoomId(target.value)
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    authStudent(name, roomId)
+  }
   return (
     <div className='auth__blok'>
       <div className='auth'>
@@ -22,7 +30,7 @@ const AuthStudent = (props) => {
           <img
             src={arrowleft}
             alt='arrowleft'
-            onClick={() => props.history.push('auth')}
+            onClick={() => history.push('auth')}
           />
         </div>
 
@@ -34,7 +42,15 @@ const AuthStudent = (props) => {
           <span>Войти в чат</span>
         </div>
 
-        <form className='auth__student' onSubmit={handleSubmit}>
+        {state.authStudentError.response &&
+          <div className='error-output'>
+            <span>{state.authStudentError.response.data.detail}</span>
+          </div>}
+
+        <form
+          className='auth__student'
+          onSubmit={handleSubmit}
+        >
           <div className='pasword-title'>
             Имя Фамилия*
           </div>
@@ -42,6 +58,8 @@ const AuthStudent = (props) => {
           <AuthInput
             type='text'
             placeholder='Билинчик Билинчиков'
+            onChange={handleChangeName}
+            isError={state.authStudentError.response}
           />
 
           <div className='pasword-title'>
@@ -51,6 +69,8 @@ const AuthStudent = (props) => {
           <AuthInput
             type='text'
             placeholder='123456'
+            onChange={handleChangeRoomId}
+            isError={state.authStudentError.response}
           />
 
           <Button
