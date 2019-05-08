@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import classNames from 'classnames'
 
 import trueeye from '../../images/trueeye.svg'
@@ -12,6 +12,10 @@ const AuthInput = ({ type = 'text', placeholder, onChange, isError = false }) =>
   const [isFilled, setIsFilled] = useState(false)
   const [inputIsError, setInputIsError] = useState(isError)
 
+  useEffect(() => {
+    setInputIsError(isError)
+  }, [isError])
+
   const handleClick = () => {
     setIsEye(!isEye)
     setTypeState(typeState === 'text' ? 'password' : 'text')
@@ -19,7 +23,7 @@ const AuthInput = ({ type = 'text', placeholder, onChange, isError = false }) =>
 
   const handleChange = ({target}) => {
     setIsFilled(!!target.value)
-    if (!isFilled) {
+    if (!target.value) {
       setInputIsError(false)
     }
     onChange(target)

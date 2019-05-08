@@ -59,7 +59,7 @@ const AuthStudent = ({ history, state, authStudent }) => {
             type='text'
             placeholder='Билинчик Билинчиков'
             onChange={handleChangeName}
-            isError={state.authStudentError.response}
+            isError={!!state.authStudentError.response}
           />
 
           <div className='pasword-title'>
@@ -70,7 +70,7 @@ const AuthStudent = ({ history, state, authStudent }) => {
             type='text'
             placeholder='123456'
             onChange={handleChangeRoomId}
-            isError={state.authStudentError.response}
+            isError={!!state.authStudentError.response}
           />
 
           <Button

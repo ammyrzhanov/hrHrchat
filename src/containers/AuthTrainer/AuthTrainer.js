@@ -58,7 +58,7 @@ const AuthTrainer = ({history, authTrainer, state}) => {
             type='text'
             placeholder='Login'
             onChange={handleChangeLogin}
-            isError={state.authTrainerError.response}
+            isError={!!state.authTrainerError.response}
           />
 
           <div className='pasword-title'>
@@ -69,7 +69,7 @@ const AuthTrainer = ({history, authTrainer, state}) => {
             type='password'
             placeholder='Password'
             onChange={handleChangePassword}
-            isError={state.authTrainerError.response}
+            isError={!!state.authTrainerError.response}
           />
 
           <Button
