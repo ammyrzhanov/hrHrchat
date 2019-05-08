@@ -10,6 +10,11 @@ import arrowleft from '../../images/arrowleft.svg'
 
 const AuthStudent = (props) => {
   console.log(props)
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    props.authStudent('lol', '231456')
+  }
+
   return (
     <div className='auth__blok'>
       <div className='auth'>
@@ -29,7 +34,7 @@ const AuthStudent = (props) => {
           <span>Войти в чат</span>
         </div>
 
-        <form className='auth__student' onSubmit={(e) => e.preventDefault()}>
+        <form className='auth__student' onSubmit={handleSubmit}>
           <div className='pasword-title'>
             Имя Фамилия*
           </div>
@@ -51,7 +56,6 @@ const AuthStudent = (props) => {
           <Button
             title='Войти'
             className='btn-primary'
-            onClick = {() => props.authStudent('lol', '231456')}
           />
         </form>
       </div>
