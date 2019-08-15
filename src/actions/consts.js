@@ -1,0 +1,5 @@
+export const STUDENT_ERROR = 'STUDENT_ERROR'
+export const STUDENT_SUCCESS = 'STUDETN_SUCCESS'
+export const TRAINER_ERROR = 'TRAINER_ERROR'
+export const TRAINER_SUCCESS = 'TRAINER_SUCCESS'
+export const server = 'https://swapi.co'

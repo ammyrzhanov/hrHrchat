@@ -1,0 +1,21 @@
+@import '../../styles/vars';
+
+.btn-primary {
+  margin-top: 40px;
+  width: 240px;
+  height: 50px;
+  border: none;
+  background: $colorPrimaryBlue;
+  border-radius: 23px;
+  color: white;
+}
+
+.btn-secondary {
+  margin-top: 40px;
+  width: 240px;
+  height: 50px;
+  border: none;
+  background: $colorSecondaryBlue;
+  border-radius: 23px;
+  color: white;
+}

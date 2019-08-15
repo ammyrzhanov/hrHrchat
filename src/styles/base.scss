@@ -1,0 +1,29 @@
+@import '_vars.scss';
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+@font-face {
+  font-family: 'Walsheim';
+  src: url('fonts/GT-Walsheim-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Walsheim Bold';
+  src: url('fonts/GT-Walsheim-Bold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Walsheim Black';
+  src: url('fonts/GT-Walsheim-Black.otf') format('opentype');
+}
+
+
+html {
+  font-size: 20px;
+  color: $colorText;
+}
+
+body {
+  background-color: $backgroundColor;
+  margin: 0;
+}
